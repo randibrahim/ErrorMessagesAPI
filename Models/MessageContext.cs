@@ -15,7 +15,7 @@ namespace ErrorMessagesAPI.Models
             var client = new MongoClient(config.ConnectionString);
             _db = client.GetDatabase(config.Database);
         }
-        public IMongoCollection<Message> Messages => _db.GetCollection<Message>("Messages");
+        public IMongoCollection<Message> Messages => _db.GetCollection<Message>("messages");
     }
 }
 
