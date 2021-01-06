@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 3.1.402
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore "ErrorMessagesAPI/ErrorMessagesAPI.csproj"
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build "ErrorMessagesAPI/ErrorMessagesAPI.csproj" --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test  "ErrorMessagesAPI/ErrorMessagesAPI.csproj" --no-build --verbosity normal
