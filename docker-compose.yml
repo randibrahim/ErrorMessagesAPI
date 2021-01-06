@@ -1,0 +1,34 @@
+version: '3.4'
+
+services:
+  errormessagesapi:
+    image: ${DOCKER_REGISTRY-}errormessagesapi
+    container_name: error-messages-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      MongoDB__Host: mongo
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    depends_on:
+      - mongo
+volumes:
+  mongo-data:
+    driver: local
