@@ -2,9 +2,9 @@ name: push to docker hub (CD)
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
 
@@ -21,7 +21,7 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
     - name: Build the Docker image
-      run: docker build . --file "./Dockerfile" --tag ${{secrets.DOCKER_ORGANIZATION}}/errormessageapi
+      run: docker build . --file "ErrorMessagesApi/Dockerfile" --tag ${{secrets.DOCKER_ORGANIZATION}}/errormessageapi
       
     - name: Docker Push
       run: docker push ${{secrets.DOCKER_ORGANIZATION}}/errormessageapi
